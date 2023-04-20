@@ -12,65 +12,81 @@ import javax.persistence.Table;
 public class Currency {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private int mId;
 
 	@Column(name = "code")
-	private String code;
+	private String mCode;
 
 	@Column(name = "symbol")
-	private String symbol;
+	private String mSymbol;
 
 	@Column(name = "description")
-	private String description;
+	private String mDescription;
 
 	@Column(name = "rate")
-	private String rate;
+	private String mRate;
 
 	@Column(name = "rate_float")
-	private long rateFloat;
+	private long mRateFloat;
 
 	public Currency() {
 
 	}
 
 	public Currency(String code, String symbol, String description, String rate, long rateFloat) {
-		this.code = code;
-		this.symbol = symbol;
-		this.description = description;
-		this.rate = rate;
-		this.rateFloat = rateFloat;
+		mCode = code;
+		mSymbol = symbol;
+		mDescription = description;
+		mRate = rate;
+		mRateFloat = rateFloat;
+	}
+	
+	public String getCode() {
+		return mCode;
 	}
 
 	public long getId() {
-		return id;
+		return mId;
 	}
 
 	public String getSymbol() {
-		return symbol;
+		return mSymbol;
+	}
+	
+	public void setCode(String code) {
+		mCode = code;
+	}
+	
+	public void setSymbol(String symbol) {
+		mSymbol = symbol;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		mDescription = description;
 	}
 
 	public String getDescription() {
-		return description;
+		return mDescription;
 	}
 
 	public void setRate(String rate) {
-		this.rate = rate;
+		mRate = rate;
+	}
+	
+	public String getRate() {
+		return mRate;
 	}
 
 	public long getRateFloat() {
-		return rateFloat;
+		return mRateFloat;
 	}
-
-	public void setRateFloat(long rateFloat) {
-		this.rateFloat = rateFloat;
+	
+	public void setRate_float(long rateFloat) {
+		mRateFloat = rateFloat;
 	}
 
 	@Override
 	public String toString() {
-		return "Tutorial [id=" + id + ", code=" + code + ",symbol=" + symbol +", desc=" + description + ", rate=" + rate + ",rateFloat=" + rateFloat +"]";
+		return "Currency [id=" + mId + ", code=" + mCode + ",symbol=" + mSymbol +", desc=" + mDescription + ", rate=" + mRate + ",rateFloat=" + mRateFloat +"]";
 	}
 }
