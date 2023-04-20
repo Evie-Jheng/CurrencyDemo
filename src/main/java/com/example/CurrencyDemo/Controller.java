@@ -1,5 +1,8 @@
 package com.example.CurrencyDemo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +34,22 @@ public class Controller {
 			Currency currencyData = mCurrencyRepository
 					.save(new Currency(currency.getCode(),currency.getSymbol(),currency.getDescription(),currency.getRate(),currency.getRateFloat()));
 			return new ResponseEntity<>(currencyData, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping("/currency")
+	public ResponseEntity<List<Currency>> getCurrency() {
+		try {
+			List<Currency> currencyList = new ArrayList<Currency>();
+			mCurrencyRepository.findAll().forEach(currencyList::add);
+			
+			if (currencyList.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+
+			return new ResponseEntity<>(currencyList, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
